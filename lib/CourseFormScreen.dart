@@ -2,34 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'GPAResultScreen.dart';
 
+/// This screen allows users to enter course details, credit values, and grades.
+/// Users can submit the form to calculate their GPA.
 class CourseFormScreen extends StatefulWidget {
   @override
   _CourseFormScreenState createState() => _CourseFormScreenState();
 }
 
 class _CourseFormScreenState extends State<CourseFormScreen> {
+  /// Global key for form validation
   final _formKey = GlobalKey<FormState>();
 
-  // Predefined course list with credit values
+  /// Predefined course list with corresponding credit values
   final Map<String, int> courseList = {
     'Statistics': 3,
-    'operating Systems': 3,
-    'Green and Sustainable technology': 1,
+    'Operating Systems': 3,
+    'Green and Sustainable Technology': 1,
     'App Development': 3,
     'Data Structures': 2,
     'AI & ML': 4,
     'Computer Networks': 3,
   };
 
-  // Predefined list of credit values for dropdown
+  /// Predefined list of possible credit values
   final List<int> creditValues = [1, 2, 3, 4, 5];
 
+  /// List to store selected courses
   List<String?> selectedCourses = List.filled(6, null);
+
+  /// List to store selected credit values
   List<int?> selectedCredits = List.filled(6, null);
+
+  /// List of text controllers for grades input fields
   List<TextEditingController> grades =
       List.generate(6, (index) => TextEditingController());
 
-  // Function to validate and submit the form
+  /// Validates and submits the form, then navigates to GPAResultScreen
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       List<String> enteredCourseNames = selectedCourses.map((e) => e!).toList();
@@ -63,7 +71,7 @@ class _CourseFormScreenState extends State<CourseFormScreen> {
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   SizedBox(height: 8),
 
-                  // Course Selection Dropdown
+                  /// Dropdown for selecting a course
                   DropdownButtonFormField<String>(
                     value: selectedCourses[i],
                     hint: Text('Select a Course'),
@@ -84,7 +92,7 @@ class _CourseFormScreenState extends State<CourseFormScreen> {
                   ),
                   SizedBox(height: 8),
 
-                  // Credit Value Dropdown
+                  /// Dropdown for selecting credit value
                   DropdownButtonFormField<int>(
                     value: selectedCredits[i],
                     hint: Text('Select Credit Value'),
@@ -104,7 +112,7 @@ class _CourseFormScreenState extends State<CourseFormScreen> {
                   ),
                   SizedBox(height: 8),
 
-                  // Grade Input
+                  /// Text field for grade input
                   TextFormField(
                     controller: grades[i],
                     decoration:
@@ -115,7 +123,7 @@ class _CourseFormScreenState extends State<CourseFormScreen> {
                 ],
                 SizedBox(height: 16),
 
-                // Submit Button
+                /// Submit Button
                 ElevatedButton(
                   onPressed: _submitForm,
                   child: Text('SUBMIT'),

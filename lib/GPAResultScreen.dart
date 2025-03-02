@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// A screen that displays the calculated GPA based on user input.
 class GPAResultScreen extends StatelessWidget {
+  /// List of course names entered by the user.
   final List<String> courseNames;
+
+  /// List of credit levels corresponding to each course.
   final List<int> creditLevels;
+
+  /// List of grades received for each course.
   final List<String> grades;
 
+  /// Constructor for the GPAResultScreen.
+
+  /// Requires [courseNames], [creditLevels], and [grades] as parameters.
   GPAResultScreen({
     required this.courseNames,
     required this.creditLevels,
     required this.grades,
   });
 
-  // Here is the function to convert letter grades to grade points
+  /// Converts letter grades to numeric grade points.
+
+  /// Returns the grade point equivalent of the provided [grade].
   double getGradePoint(String grade) {
     switch (grade.toUpperCase()) {
       case 'A+':
@@ -43,7 +54,9 @@ class GPAResultScreen extends StatelessWidget {
     }
   }
 
-  // Function to calculate GPA
+  /// Calculates the GPA based on provided course grades and credits.
+
+  /// Returns the calculated GPA rounded to 2 decimal places.
   double calculateGPA() {
     double totalPoints = 0;
     int totalCredits = 0;
@@ -57,8 +70,7 @@ class GPAResultScreen extends StatelessWidget {
     }
 
     if (totalCredits == 0) return 0.0;
-    return double.parse((totalPoints / totalCredits)
-        .toStringAsFixed(2)); // Rounded to 2 decimal places
+    return double.parse((totalPoints / totalCredits).toStringAsFixed(2));
   }
 
   @override
@@ -68,11 +80,13 @@ class GPAResultScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('GPA Result')),
       body: Center(
-        // Ensures everything is centered
+        /// Ensures everything is centered
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Center content vertically
+            mainAxisSize: MainAxisSize.min,
+
+            /// Center content vertically
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -83,7 +97,9 @@ class GPAResultScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                gpa.toStringAsFixed(2), // Display GPA with 2 decimal places
+                gpa.toStringAsFixed(2),
+
+                /// Display GPA with 2 decimal places
                 style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,

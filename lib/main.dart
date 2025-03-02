@@ -7,7 +7,7 @@ void main() {
   runApp(MyApp());
 }
 
-// Here is the Main App Widget including a color theme and navigation
+/// Here is the Main App Widget including a color theme and navigation
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
           if (index == 0) {
             Get.to(CourseFormScreen());
           } else {
-            // Passing empty lists as default values
+            /// Passing empty lists as default values
             Get.to(GPAResultScreen(
               courseNames: List.filled(6, ''),
               creditLevels: List.filled(6, 0),
